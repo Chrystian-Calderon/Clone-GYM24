@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Lexend:wght@100..900&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-yellow: #FAFF00;
+  --color-gray: #222222;
+  --font-family-bruno: 'Bruno Ace SC', sans-serif;
+  --font-family-lexend: 'Lexend', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+h2, h3, h4, h5, h6, p, a, span, li, button {font-family: var(--font-family-lexend);}
+
+.mask-image {
+  -webkit-mask-image: radial-gradient(ellipse 80% 140% at 50% 40%, black 40%, transparent 50%);
+  mask-image: radial-gradient(ellipse 80% 140% at 50% 40%, black 40%, transparent 50%);
+}
