@@ -1,11 +1,213 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import Button from "../components/Button.astro";
+import Card from "../components/Card.astro";
+import Carousel from "../components/Carousel.astro";
+import TrainerCard from "../components/Trainer.card.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import gymBG from "../assets/gym-bg.jpg";
+import eqipmentLine from "../assets/eqipment-line.png";
+import eqipment from "../assets/eqipment.png";
+import fitnessZone from "../assets/fitness-zones.png";
+import time from "../assets/time.png";
+
+import { cards } from "../data/card.data.js";
+
+import trainer1 from "../assets/trainer-1.jpg";
+import trainer2 from "../assets/trainer-2.jpg";
+import trainer3 from "../assets/trainer-3.jpg";
+import trainer4 from "../assets/trainer-4.jpg";
+import trainer5 from "../assets/trainer-5.jpg";
+import trainer6 from "../assets/trainer-6.jpg";
+import trainer7 from "../assets/trainer-7.jpg";
+import trainer8 from "../assets/trainer-8.jpg";
+
+const images = [
+  {
+    name: "Victoria Shurpik",
+    img: trainer1,
+  },
+  {
+    name: "Elizabeth Lavrinenko",
+    img: trainer2,
+  },
+  {
+    name: "Ivan Gladkikh",
+    img: trainer3,
+  },
+  {
+    name: "Lyudmila Sabilo",
+    img: trainer4,
+  },
+  {
+    name: "Evgeny Gurkov",
+    img: trainer5,
+  },
+  {
+    name: "Anatoly Prytytsky",
+    img: trainer6,
+  },
+  {
+    name: "Victor Ludkovich",
+    img: trainer7,
+  },
+  {
+    name: "Maria Masyak",
+    img: trainer8,
+  },
+];
 ---
 
 <Layout>
-	<Welcome />
+  <!-- Principal -->
+  <div
+    class="relative h-[92vh] flex items-center justify-center lg:justify-normal"
+  >
+    <div class="z-1 w-[600px] xl:w-[900px] flex flex-col lg:block items-center">
+      <h2
+        class="text-3xl xl:text-6xl text-white mb-8 font-bold text-shadow-lg/50 lg:text-shadow-none text-center lg:text-left px-4 sm:px-0"
+      >
+        Sesión de prueba gratuita con un entrenador
+      </h2>
+      <Button title="Más detalles" url="#" />
+    </div>
+    <div class="absolute -top-13 lg:-right-30 md:w-[600px] md:h-[600px]">
+      <Image
+        src={gymBG}
+        alt="Gym fondo"
+        class="h-[600px] md:w-[600px] md:h-[600px] mask-image object-cover"
+      />
+    </div>
+  </div>
+  <!-- Advantages -->
+  <section
+    class="sm:h-[100vh] flex flex-col justify-center px-5 sm:px-10 md:px-15 lg:px-0"
+    id="advantages"
+  >
+    <h2 class="text-3xl xl:text-5xl text-white font-bold mb-10">
+      Razones para unirte
+    </h2>
+    <div class="flex flex-col sm:grid sm:grid-cols-2 text-white gap-20">
+      <div class="flex gap-4">
+        <Image
+          src={eqipmentLine}
+          alt="icon equipamiento regla"
+          width="50"
+          height="50"
+        />
+        <div>
+          <h3 class="text-lg font-bold">15000 sq.m.</h3>
+          <p class="text-sm">
+            Un amplio gimnasio para practicar deportes: una distancia segura
+            entre las máquinas de ejercicio.
+          </p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <Image src={eqipment} alt="icon equipamiento" width="50" height="50" />
+        <div>
+          <h3 class="text-lg font-bold">Más de 200 equipamientos</h3>
+          <p class="text-sm">
+            Sin colas en los simuladores. Equipo premium de LifeStyle, Hammer
+            Strength y TechnoGym.
+          </p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <Image
+          src={fitnessZone}
+          alt="icon zona de fitness"
+          width="50"
+          height="50"
+        />
+        <div>
+          <h3 class="text-lg font-bold">4 zonas fitness</h3>
+          <p class="text-sm">
+            Desde cardio hasta funcional y ciclismo. Zona separada para boxeo y
+            artes marciales mixtas.
+          </p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <Image src={time} alt="icon de tiempo" width="50" height="50" />
+        <div>
+          <h3 class="text-lg font-bold">Operando las 24 horas</h3>
+          <p class="text-sm">
+            El gimnasio está abierto las 24 horas del día, también funciona
+            todos los días festivos y fines de semana.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Menbership -->
+  <section
+    class="text-white flex flex-col justify-between py-10"
+    id="menbership"
+  >
+    <h2 class="text-3xl xl:text-5xl font-bold text-center mb-8">
+      Menbresia de gimnasio
+    </h2>
+    <div
+      class="flex flex-col sm:grid sm:grid-cols-2 xl:grid-cols-3 gap-15 mx-5 sm:mx-20"
+    >
+      {
+        cards.map((card, index) => (
+          <Card
+            key={index}
+            title={card.title}
+            price={card.price}
+            descList={card.descList}
+          />
+        ))
+      }
+    </div>
+  </section>
+  <!-- About -->
+  <section
+    class="text-white sm:h-[100vh] flex items-center flex-col sm:flex-row px-5 sm:px-10 md:px-15 lg:px-0"
+    id="about"
+  >
+    <div class="sm:w-250 sm:mr-10">
+      <h2 class="text-3xl xl:text-5xl font-bold mb-10">Sobre nosotros</h2>
+      <div class="text-sm">
+        <p>
+          Gym24 es un centro de fitness líder ubicado cerca de la estación de
+          metro Grushevka, que ofrece más de 1500 m² de espacio dedicado al
+          entrenamiento, equipado con lo mejor en máquinas de ejercicio de
+          marcas reconocidas como Hammer Strength, Life Fitness y TechnoGym.
+        </p><br />
+        <p>
+          Con opciones de membresía asequibles, Gym24 es accesible para todos
+          aquellos que desean alcanzar sus objetivos de acondicionamiento
+          físico, ya sea ganar fuerza, aumentar la resistencia o perder peso.
+        </p><br />
+        <p>
+          Los entrenadores certificados de Gym24 brindan orientación experta y
+          apoyo para desarrollar planes de entrenamiento personalizados
+          adaptados a las necesidades y objetivos individuales de cada persona.
+        </p><br />
+      </div>
+    </div>
+    <Carousel />
+  </section>
+  <!-- Trainers -->
+  <section class="text-white px-10 md:px-15 lg:px-0">
+    <h2
+      class="text-3xl xl:text-5xl text-center font-bold mb-8 pt-10"
+      id="trainers"
+    >
+      Personal de entrenadores
+    </h2>
+    <div
+      class="flex flex-wrap justify-center sm:grid sm:grid-cols-3 lg:grid-cols-4 gap-8 sm:gap-4"
+    >
+      {
+        images.map((image, index) => (
+          <TrainerCard image={image.img} name={image.name} />
+        ))
+      }
+    </div>
+  </section>
 </Layout>
