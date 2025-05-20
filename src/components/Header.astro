@@ -1,0 +1,93 @@
+<nav
+  class="flex justify-between py-2 sticky top-0 z-10 transition duration-700 relative px-5 sm:px-10 md:px-15 lg:px-0"
+  id="navbar"
+>
+  <h1 class="font-family-bruno text-2xl text-white z-2">
+    GYM<span class="text-yellow">24</span>
+  </h1>
+  <div class="flex space-x-10 text-xs items-center text-white hidden sm:flex">
+    <a
+      href="#advantages"
+      class="cursor-pointer font-medium hover:text-yellow hover:underline transition duration-500"
+      >Ventajas</a
+    >
+    <a
+      href="#menbership"
+      class="cursor-pointer font-medium hover:text-yellow hover:underline transition duration-500"
+      >Afiliación</a
+    >
+    <a
+      href="#about"
+      class="cursor-pointer font-medium hover:text-yellow hover:underline transition duration-500"
+      >Acerca de</a
+    >
+    <a
+      href="#trainers"
+      class="cursor-pointer font-medium hover:text-yellow hover:underline transition duration-500"
+      >Entrenadores</a
+    >
+  </div>
+  <!-- Hamburger -->
+  <div
+    class="w-[40px] h-[40px] py-2 flex flex-col justify-between relative z-2 block sm:hidden"
+    onClick="clickHamburger()"
+  >
+    <div class="w-full h-[5px] bg-white"></div>
+    <div class="w-full h-[5px] bg-white"></div>
+    <div class="w-full h-[5px] bg-white"></div>
+  </div>
+  <!-- navbar mobile -->
+  <div
+    class="absolute -top-90 left-0 z-0 w-full bg-black flex flex-col gap-2 text-xl items-center text-white block transition-all duration-500 sm:hidden"
+    id="navbarMobile"
+  >
+    <a
+      href="#advantages"
+      onClick="clickHamburger()"
+      class="w-full cursor-pointer py-4 text-center hover:text-yellow hover:font-bold focus:text-yellow focus:font-bold transition duration-500"
+      >Ventajas</a
+    >
+    <a
+      href="#menbership"
+      onClick="clickHamburger()"
+      class="w-full cursor-pointer py-4 text-center hover:text-yellow hover:font-bold focus:text-yellow focus:font-bold transition duration-500"
+      >Afiliación</a
+    >
+    <a
+      href="#about"
+      onClick="clickHamburger()"
+      class="w-full cursor-pointer py-4 text-center hover:text-yellow hover:font-bold focus:text-yellow focus:font-bold transition duration-500"
+      >Acerca de</a
+    >
+    <a
+      href="#trainers"
+      onClick="clickHamburger()"
+      class="w-full cursor-pointer py-4 text-center hover:text-yellow hover:font-bold focus:text-yellow focus:font-bold transition duration-500"
+      >Entrenadores</a
+    >
+  </div>
+</nav>
+<script is:client>
+  window.addEventListener("scroll", () => {
+    const nav = document.getElementById("navbar");
+    if (window.scrollY > 150) {
+      nav.classList.add("bg-black", "shadow");
+      nav.classList.remove("bg-transparent");
+    } else {
+      nav.classList.add("bg-transparent");
+      nav.classList.remove("bg-black", "shadow");
+    }
+  });
+
+  function clickHamburger() {
+    if (document.getElementById("navbarMobile").classList.contains("-top-90")) {
+      document.getElementById("navbarMobile").classList.add("top-13");
+      document.getElementById("navbarMobile").classList.remove("-top-90");
+      document.getElementById("navbar").classList.toggle("!bg-black");
+    } else {
+      document.getElementById("navbarMobile").classList.add("-top-90");
+      document.getElementById("navbarMobile").classList.remove("top-13");
+      document.getElementById("navbar").classList.toggle("!bg-black");
+    }
+  }
+</script>
