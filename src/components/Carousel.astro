@@ -1,0 +1,80 @@
+---
+import img1 from "../assets/photo-carrusel-1.jpg";
+import img2 from "../assets/photo-carrusel-2.jpg";
+import img3 from "../assets/photo-carrusel-3.jpg";
+const images = [img1, img2, img3];
+---
+
+<div id="carousel" class="relative w-full max-w-2xl mx-auto overflow-hidden">
+  <div class="w-full h-80 relative">
+    {
+      images.map((img, i) => (
+        <img
+          src={img.src}
+          class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-700 rounded-sm"
+          style={`opacity: ${i === 0 ? "1" : "0"};`}
+          data-carousel-image
+        />
+      ))
+    }
+  </div>
+  <div class="flex justify-between">
+    <div class="flex items-center gap-4">
+      <div
+        class="w-[40px] border rounded-2xl status-carousel-image border-yellow"
+      >
+      </div>
+      <div class="w-[40px] border rounded-2xl status-carousel-image"></div>
+      <div class="w-[40px] border rounded-2xl status-carousel-image"></div>
+    </div>
+    <div class="">
+      <button
+        class="bg-black bg-opacity-50 text-white px-3 py-1 rounded cursor-pointer"
+        onclick="prevSlide()"
+      >
+        ‹
+      </button>
+      <button
+        class="bg-black bg-opacity-50 text-white px-3 py-1 rounded cursor-pointer"
+        onclick="nextSlide()"
+      >
+        ›
+      </button>
+    </div>
+  </div>
+
+  <script is:client>
+    let currentIndex = 0;
+    const images = [];
+    const statusImg = [];
+
+    onload = () => {
+      document
+        .querySelectorAll("[data-carousel-image]")
+        .forEach((img) => images.push(img));
+      document
+        .querySelectorAll(".status-carousel-image")
+        .forEach((status) => statusImg.push(status));
+    };
+
+    function showSlide(index) {
+      images.forEach((img, i) => {
+        img.style.opacity = i === index ? "1" : "0";
+      });
+      statusImg.forEach((status, i) => {
+        if (i === index) status.classList.add("border-yellow");
+        else status.classList.remove("border-yellow");
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showSlide(currentIndex);
+    }
+  </script>
+</div>
